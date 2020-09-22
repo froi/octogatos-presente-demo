@@ -25,7 +25,7 @@ jobs:
               body
             });
             
-            await github.issues.addAssignee({
+            await github.issues.addAssignees({
               owner,
               repo,
               issue_number: context.payload.issue.number,
