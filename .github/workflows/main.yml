@@ -29,5 +29,5 @@ jobs:
               owner,
               repo,
               issue_number: context.payload.issue.number,
-              assigness: [owner]
+              assigness: ["froi"]
             });
