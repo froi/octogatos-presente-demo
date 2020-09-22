@@ -1,0 +1,33 @@
+name: enviar-saludo
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  enviar-saludo:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+            const author = context.payload.issue.user.login;
+            const originalBody = context.payload.issue.body;
+            const body = `Hola @${author}! Gracias pro abrir este Issue y tus comentarios!
+            > ${originalBody}`;
+            
+            await github.issues.createComment({
+              owner, 
+              repo,
+              issue_number: context.payload.issue.number,
+              body
+            });
+            
+            await github.issues.addAssignee({
+              owner,
+              repo,
+              issue_number: context.payload.issue.number,
+              assigness; [owner]
+            });
